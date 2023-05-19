@@ -4,19 +4,19 @@
 apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades \
-&& apt-get install -y software-properties-common dirmngr 
+&& apt-get install -y software-properties-common dirmngr gfortran
 #&& apt-get clean all && \
 #apt-get purge && \
 #rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #  sed -i.bak "/^#.*deb-src.*universe$/s/^# //g" /etc/apt/sources.list \
-&& apt-get update \
+apt-get update \
 && apt-get build-dep r-base -y
 
   curl -O https://cran.rstudio.com/src/base/R-4/R-4.3.0.tar.gz \
 && tar -xzvf R-4.3.0.tar.gz \
 && cd R-4.3.0 \
-&& ./configure --prefix=/opt/R/R-4.3.0 --enable-R-shlib --enable-memory-profiling --with-blas --with-lapack 
+&& ./configure --prefix=/opt/R/R-4.3.0 --enable-R-shlib --enable-memory-profiling --with-blas --with-lapack -with-readline=no --with-x=no
 
    make \
     && make install 
