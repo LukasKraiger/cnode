@@ -4,10 +4,10 @@
 apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades \
-&& apt-get install -y software-properties-common dirmngr \
-&& apt-get clean all && \
-apt-get purge && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& apt-get install -y software-properties-common dirmngr 
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
   sed -i.bak "/^#.*deb-src.*universe$/s/^# //g" /etc/apt/sources.list \
 && apt-get update \
@@ -30,18 +30,18 @@ cd ..
 && apt-get upgrade -y \
 && apt-get install -y git \
 && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
-&& apt-get install -y ttf-mscorefonts-installer \
-&& apt-get clean all && \
-apt-get purge && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& apt-get install -y ttf-mscorefonts-installer 
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
   apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y libgit2-dev build-essential libcurl4-gnutls-dev libxml2-dev  \
-&& apt-get install -y libssl-dev cmake libfontconfig1-dev freetype2-doc libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
-&& apt-get clean all && \
-apt-get purge && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& apt-get install -y libssl-dev cmake libfontconfig1-dev freetype2-doc libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev 
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #https://stackoverflow.com/questions/65433724/configuration-failed-to-find-libgit2-library
 #https://github.com/r-lib/devtools/issues/2131
 
