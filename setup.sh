@@ -9,7 +9,7 @@ apt-get update \
 #apt-get purge && \
 #rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-  sed -i.bak "/^#.*deb-src.*universe$/s/^# //g" /etc/apt/sources.list \
+#  sed -i.bak "/^#.*deb-src.*universe$/s/^# //g" /etc/apt/sources.list \
 && apt-get update \
 && apt-get build-dep r-base -y
 
