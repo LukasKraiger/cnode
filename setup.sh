@@ -3,7 +3,7 @@
 
 apt-get update \
 && apt-get upgrade -y \
-&& apt-get install -y gnupg2 wget cmake curl openssh-server \
+&& apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades \
 && apt-get install -y software-properties-common dirmngr \
 && apt-get clean all && \
 apt-get purge && \
