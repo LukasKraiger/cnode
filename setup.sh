@@ -3,8 +3,8 @@
 
 apt-get update \
 && apt-get upgrade -y \
-&& apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades \
-&& apt-get install -y software-properties-common dirmngr gfortran libbz2-dev g++
+&& apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades texlive-latex-recommended texlive-latex-extra \
+&& apt-get install -y software-properties-common dirmngr gfortran libbz2-dev g++ libreoffice texlive-latex-base pandoc
 #&& apt-get clean all && \
 #apt-get purge && \
 #rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -95,4 +95,3 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
 rm R-4.3.0.tar.gz 
 
-mkdir projects
