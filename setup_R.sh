@@ -1,31 +1,36 @@
 #!/bin/sh
 
-#https://askubuntu.com/questions/87111/if-i-build-a-package-from-source-how-can-i-uninstall-or-remove-completely
 
 apt-get update \
 && apt-get upgrade -y \
-&& cd R-4.3.0 \
-&& make uninstall \
-&& apt-get clean all && \
-apt-get purge && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades texlive-latex-recommended texlive-latex-extra \
+&& apt-get install -y software-properties-common dirmngr gfortran libbz2-dev g++ libreoffice texlive-latex-base pandoc zlib1g zlib1g-dev
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+apt-get update \
+&& apt-get upgrade -y \
+&& apt-get install -y git \
+&& echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
+&& apt-get install -y ttf-mscorefonts-installer 
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-  sed -i.bak "/^#.*deb-src.*universe$/s/^# //g" /etc/apt/sources.list \
-&& apt-get update \
-&& apt-get build-dep r-base -y
+  apt-get update \
+&& apt-get upgrade -y \
+&& apt-get install -y libgit2-dev build-essential libcurl4-gnutls-dev libxml2-dev  \
+&& apt-get install -y libssl-dev cmake libfontconfig1-dev freetype2-doc libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev 
+#&& apt-get clean all && \
+#apt-get purge && \
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#https://stackoverflow.com/questions/65433724/configuration-failed-to-find-libgit2-library
+#https://github.com/r-lib/devtools/issues/2131
 
-  curl -O https://cran.rstudio.com/src/base/R-4/R-4.3.0.tar.gz \
-&& tar -xzvf R-4.3.0.tar.gz \
-&& cd R-4.3.0 \
-&& ./configure --prefix=/opt/R/R-4.3.0 --enable-R-shlib --enable-memory-profiling --with-blas --with-lapack 
-
-   make \
-    && make install 
-cd .. 
-
-  ln -s /opt/R/R-4.3.0/bin/R /usr/local/bin/R \
-    && ln -s /opt/R/R-4.3.0/bin/Rscript /usr/local/bin/Rscript
-    
+apt install --no-install-recommends software-properties-common dirmngr
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+apt install --no-install-recommends r-base
 
   R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
@@ -42,6 +47,7 @@ cd ..
   R -e "if (!library(jtools, logical.return=T)) install.packages('jtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(car, logical.return=T)) install.packages('car', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(ggpubr, logical.return=T)) install.packages('ggpubr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+  R -e "if (!library(Cairo, logical.return=T)) install.packages('Cairo', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
 
   R -e "if (!library(xlsx, logical.return=T)) install.packages('xlsx', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(rstatix, logical.return=T)) install.packages('rstatix', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
@@ -55,7 +61,7 @@ cd ..
   R -e "if (!library(reshape, logical.return=T)) quit(status=10)"
   R -e "if (!library(plyr, logical.return=T)) quit(status=10)"
   R -e "if (!library(datarium, logical.return=T)) quit(status=10)"
-
+  R -e "if (!library(Cairo, logical.return=T)) quit(status=10)"
   R -e "if (!library(devtools, logical.return=T)) quit(status=10)"
   R -e "if (!library(tidyverse, logical.return=T)) quit(status=10)"
   R -e "if (!library(sjlabelled, logical.return=T)) quit(status=10)"
@@ -72,4 +78,6 @@ cd ..
  
   R -e "devtools::install_github('LukasKraiger/frame')"
 
-  rm -rf R-4.3.0
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+
