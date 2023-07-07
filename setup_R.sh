@@ -8,7 +8,8 @@ apt-get update \
 && apt-get install -y flatpak \
 && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
 && flatpak install -y --noninteractive jasp \
-&& flatpak install -y --noninteractive jamovi
+&& flatpak install -y --noninteractive jamovi \
+&& snap install zotero-snap
 #&& apt-get clean all && \
 #apt-get purge && \
 #rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -35,6 +36,9 @@ apt install --no-install-recommends software-properties-common dirmngr
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 apt install --no-install-recommends r-base
+
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.06.0-421-amd64.deb
+dpkg -i rstudio-2023.06.0-421-amd64.deb
 
   R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
