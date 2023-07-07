@@ -86,6 +86,6 @@ dpkg -i rstudio-2023.06.0-421-amd64.deb
  
   R -e "devtools::install_github('LukasKraiger/frame')"
 
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+#cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
 
