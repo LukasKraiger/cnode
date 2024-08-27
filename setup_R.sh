@@ -5,7 +5,7 @@ apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y gnupg2 wget cmake curl openssh-server unattended-upgrades texlive-latex-recommended texlive-latex-extra \
 && apt-get install -y software-properties-common dirmngr gfortran libbz2-dev g++ libreoffice texlive-latex-base pandoc zlib1g zlib1g-dev pspp octave texmaker \
-&& apt-get install -y flatpak \
+&& apt-get install -y flatpak jabref\
 && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
 && flatpak install -y --noninteractive jasp \
 && flatpak install -y --noninteractive jamovi \
@@ -62,6 +62,7 @@ dpkg -i rstudio-2023.06.0-421-amd64.deb
   R -e "if (!library(reshape, logical.return=T)) install.packages('reshape', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(plyr, logical.return=T)) install.packages('plyr', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
   R -e "if (!library(datarium, logical.return=T)) install.packages('datarium', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
+  R -e "if (!library(apaTables, logical.return=T)) install.packages('apaTables', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
 
 
   R -e "if (!library(xlsx, logical.return=T)) quit(status=10)"
