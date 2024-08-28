@@ -13,6 +13,8 @@ dnf update -y \
     && dnf -y install harfbuzz-devel fribidi-devel openssl-devel libuuid libuuid-devel libcurl-devel \
     && dnf -y install freetype-devel libpng-devel libtiff-devel libjpeg-turbo-devel
 
+echo "options(Ncpus = 9)" >> .Rprofile
+
 R -e "if (!library(devtools, logical.return=T)) install.packages('devtools', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
  R -e "if (!library(tidyverse, logical.return=T)) install.packages('tidyverse', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
  R -e "if (!library(sjlabelled, logical.return=T)) install.packages('sjlabelled', dependencies=TRUE, repos='https://cran.wu.ac.at/')"
