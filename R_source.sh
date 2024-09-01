@@ -1,7 +1,5 @@
 #!/bin/sh
-
-sudo su
-    
+   
 # Set the R version to install
 R_VERSION=4.2.2
 
