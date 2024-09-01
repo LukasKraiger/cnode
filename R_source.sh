@@ -8,7 +8,7 @@ apt install -y g++ gcc gfortran libreadline-dev libx11-dev libxt-dev \
             libbz2-dev libzstd-dev liblzma-dev libtiff5 \
             libssh-dev libgit2-dev libcurl4-openssl-dev \
             libblas-dev liblapack-dev libopenblas-base \
-            zlib1g-dev openjdk-11-jdk \
+            zlib1g-dev openjdk-17-jdk \
             texinfo texlive texlive-fonts-extra \
             screen wget libpcre2-dev make cmake
 cd /usr/local/src
